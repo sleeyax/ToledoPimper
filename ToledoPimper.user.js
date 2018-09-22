@@ -6,8 +6,8 @@
 // @include		*toledo.kuleuven.be/portal*
 // @version		1.0
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @require		libs/jBox.js
-// @resource	jBoxCSS libs/jBox.css
+// @require		lib/jBox.js
+// @resource	jBoxCSS lib/jBox.css
 // @resource	form form.html
 // @grant		GM_addStyle
 // @grant		GM_getResourceText
@@ -87,7 +87,7 @@ function CoursePimper()
             let courseName = $(this).find(".ng-binding").html();
             let coverImg = GM_getValue(courseName) !== undefined ? GM_getValue(courseName) : replacements[courseName];
             if (coverImg !== undefined) {
-                $(this).find(".image-container").css("background", "rgba(0, 0, 0, 0) url('" + coverImg + "') no-repeat scroll center center / cover");
+                $(this).find(".image-container").css("background", "rgba(255, 255, 255) url('" + coverImg + "') no-repeat scroll center center / cover");
                 console.log("Replaced " + courseName + " img with " + coverImg);
             }
         });
