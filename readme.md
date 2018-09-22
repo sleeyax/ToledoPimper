@@ -36,7 +36,7 @@ This will add a link to your course settings panel:
 ![Screenshot](https://i.imgur.com/F9kqC9e.png)
 
 # Screenshots
-
+![Screenshot 2](https://i.imgur.com/VYosZwV.png)
 
 # More
 Looking for a [dark theme](https://userstyles.org/styles/148080/toledo-dark-theme)?
