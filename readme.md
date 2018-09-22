@@ -15,7 +15,7 @@ toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
     pimper.replaceCourseCoverImages({
         "Course name 1 [Z12345]": "https://i.imgur.com/hnA7X9y.jpg",
-        "Course name 2 [Z678910]": "https://i.imgur.com/bEurifB.jpg"
+        "Course name 2 [Z56789]": "https://i.imgur.com/bEurifB.jpg"
     });
 }); 
 ```
