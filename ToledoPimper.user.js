@@ -96,11 +96,12 @@ function CoursePimper()
     this.enablePimpSettings = function () {
         // Insert pimp link when it doesn't exist yet
         if ($(".panel-body .col-md-push-6 #toledoPimper").length == 0) {
-            $(".panel-body .col-md-push-6").append('<h5 id="toledoPimper">Toledo pimper</h5><ul><li><a href="#" class="openCourseCoverImageChangerModal">Change cover image</a></li></ul>');
+            $(".panel-body .col-md-push-6").append('<h5 id="toledoPimper">Toledo pimper</h5><ul><li><a class="openCourseCoverImageChangerModal" style="cursor: pointer;">Change cover image</a></li></ul>');
         }
 
         // Open img changer modal when user clicks the pimp link
         $(".panel-body .col-md-push-6 .openCourseCoverImageChangerModal").on("click", () => {
+            console.log("course image cover changer modal opened");
             let imageChangerModal = new jBox('Modal', {
                 delayOpen: 500,
                 delayClose: 1000,
@@ -111,11 +112,12 @@ function CoursePimper()
                 closeButton: true
             });
             imageChangerModal.open();
-            $("#imageChangerModalSaveBtn").click(() => {
+            $("#imageChangerModalSaveBtn").on("click", () => {
                 let courseTitle = $(".panel-body dt.ng-binding:contains('Full title')").next().text();
                 GM_setValue(courseTitle, $("#imageLocationUrl").val());
                 imageChangerModal.close();
                 imageChangerModal.destroy();
+                console.log("course image cover changer modal destroyed");
                 this.replaceCourseCoverImages();
             });
         });
