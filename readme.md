@@ -2,38 +2,54 @@
 Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toledomod](https://github.com/Sigurd3K/ToledoMod).
 
 # Features
-- Change course cover images (gifs work too!)
+- CoursePimper
+    - Change course cover images (gifs work too!)
+    - Change course titles
 
 # Installation
 Install using your favorite userscript manager. ([Read more about userscripts here](https://greasyfork.org/en)). 
-Generally speaking, you can use the code in 2 different ways to change the covers.
-## Method 1
-Using code only:
+
+# Examples
+## CoursePimper
+### Code only
 ```
 let toledo = new Toledo();
 toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
-    pimper.replaceCourseCoverImages({
-        "Course name 1 [Z12345]": "https://i.imgur.com/hnA7X9y.jpg",
-        "Course name 2 [Z56789]": "https://i.imgur.com/bEurifB.jpg"
-    });
+    pimper.load([
+        {
+            "course": "course name 1",
+            "image": "https://i.imgur.com/c7GOFJv.jpg",
+        },
+        {
+           "course": "course name 2",
+           "title": "my much better custom course title"
+        },
+        {
+           "course": "course name 3",
+           "image": "https://i.imgur.com/c7GOFJv.jpg",
+           "title": "my much better custom course title"
+        },
+    ]);                                
 }); 
 ```
-Cover images will be statically updated.
-## Method 2
-By inserting a graphical control:
+### Insert graphical control
 ```
 let toledo = new Toledo();
 toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
-    pimper.replaceCourseCoverImages();
+    pimper.load();
     toledo.onCourseSettingsLoaded(() => {
-        pimper.enablePimpSettings();
+        pimper.insertControl();
     });
 });
 ```
 This will add a link to your course settings panel:
 ![Screenshot](https://i.imgur.com/F9kqC9e.png)
+
+
+### Combined
+Of course you can combine the two methods above, but note that the code only method will always overwrite the graphical control settings.
 
 # Screenshots
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)

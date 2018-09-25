@@ -4,7 +4,7 @@
 // @description	Make toledo less boring
 // @author		Sleeyax
 // @include		*toledo.kuleuven.be/portal*
-// @version		1.2
+// @version		1.3
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @require		inc/jBox.js
 // @require	    Toledo.js
@@ -17,13 +17,21 @@
 // @grant		GM_getValue
 // ==/UserScript==
 
+// --DO NOT DELETE--
 GM_addStyle(GM_getResourceText("jBoxCSS"));
+// ----
 
 let toledo = new Toledo();
 
 toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
-    pimper.replaceCoverImages();
+    pimper.load([
+        {
+            "course": "French",
+            "title" : "Je ne comprend pas"
+        }
+    ]);
+
     toledo.onCourseSettingsLoaded(() => {
         pimper.insertControl();
     });
