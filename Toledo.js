@@ -5,7 +5,7 @@ function Toledo()
      * @param {function} onCoursesLoadedCallback
      * @param {int} timesToCheck
      */
-    this.onCoursesLoaded = function (onCoursesLoadedCallback, timesToCheck = 3)
+    this.onCoursesLoaded = function (onCoursesLoadedCallback, timesToCheck = 1)
     {
         let coursesCount = 0;
         let coursesLoadedChecker = setInterval(() => {
