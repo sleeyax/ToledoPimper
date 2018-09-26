@@ -16,7 +16,7 @@ Install using your favorite userscript manager. ([Read more about userscripts he
 let toledo = new Toledo();
 toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
-    pimper.load([
+    pimper.update([
         {
             "course": "course name 1",
             "image": "https://i.imgur.com/c7GOFJv.jpg",
@@ -38,7 +38,7 @@ toledo.onCoursesLoaded(() => {
 let toledo = new Toledo();
 toledo.onCoursesLoaded(() => {
     let pimper = new CoursePimper();
-    pimper.load();
+    pimper.update();
     toledo.onCourseSettingsLoaded(() => {
         pimper.insertControl();
     });

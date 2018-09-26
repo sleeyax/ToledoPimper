@@ -1,7 +1,7 @@
 function Toledo()
 {
     /**
-     * Wait for courses to load
+     * Wait for courses to update
      * @param {function} onCoursesLoadedCallback
      * @param {int} timesToCheck
      */
@@ -26,7 +26,7 @@ function Toledo()
     };
 
     /**
-     * Wait for settings panel to load when course settings button is clicked
+     * Wait for settings panel to update when course settings button is clicked
      * @param {function} onCourseSettingsLoadedCallback
      */
     this.onCourseSettingsLoaded = function (onCourseSettingsLoadedCallback)
