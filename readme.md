@@ -5,51 +5,13 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
 - CoursePimper
     - Change course cover images (gifs work too!)
     - Change course titles
+    - Import/export/delete your configuration
 
 # Installation
 Install using your favorite userscript manager. ([Read more about userscripts here](https://greasyfork.org/en)). 
 
 # Examples
-## CoursePimper
-### Code only
-```
-let toledo = new Toledo();
-toledo.onCoursesLoaded(() => {
-    let pimper = new CoursePimper();
-    pimper.update([
-        {
-            "course": "course name 1",
-            "image": "https://i.imgur.com/c7GOFJv.jpg",
-        },
-        {
-           "course": "course name 2",
-           "title": "my much better custom course title"
-        },
-        {
-           "course": "course name 3",
-           "image": "https://i.imgur.com/c7GOFJv.jpg",
-           "title": "my much better custom course title"
-        },
-    ]);                                
-}); 
-```
-### Insert graphical control
-```
-let toledo = new Toledo();
-toledo.onCoursesLoaded(() => {
-    let pimper = new CoursePimper();
-    pimper.update();
-    toledo.onCourseSettingsLoaded(() => {
-        pimper.insertControl();
-    });
-});
-```
-This will add a link to your course settings panel:
-![Screenshot](https://i.imgur.com/F9kqC9e.png)
 
-
-### Combined
-Of course you can combine the two methods above, but note that the code only method will always overwrite the graphical control settings.
 
 # Screenshots
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)
