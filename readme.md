@@ -10,11 +10,11 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
 # Installation
 Install using your favorite userscript manager. ([Read more about userscripts here](https://greasyfork.org/en)). 
 
-# Examples
-
-
 # Screenshots
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)
+
+# Examples
+Check out [the wiki](https://github.com/sleeyax/ToledoPimper/wiki/Quickstart) for examples and more screenshots.
 
 # More
 Looking for a [dark theme](https://userstyles.org/styles/148080/toledo-dark-theme)?
