@@ -30,6 +30,7 @@ let toledo = new Toledo();
 
 toledo.onCoursesLoaded(() => {
     let coursePimper = new CoursePimper();
+    coursePimper.update();
 
     toledo.onCourseSettingsLoaded(() => {
         coursePimper.insertControl();
