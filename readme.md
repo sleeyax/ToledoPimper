@@ -8,7 +8,7 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
     - Import/export/delete your configuration
 
 # Installation
-Install using your favorite userscript manager. ([Read more about userscripts here](https://greasyfork.org/en)). 
+Get a userscript manager and just [click here to install](https://github.com/sleeyax/ToledoPimper/raw/master/ToledoPimper.user.js)!
 
 # Screenshots
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)
