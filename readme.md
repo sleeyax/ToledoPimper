@@ -6,6 +6,8 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
     - Change course cover images (gifs work too!)
     - Change course titles
     - Import/export/delete your configuration
+- Clock
+    - Display current time in a side panel
 
 # Installation
 Install using your favorite userscript manager. ([Read more about userscripts here](https://greasyfork.org/en)). 

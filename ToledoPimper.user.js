@@ -10,6 +10,7 @@
 // @require     Pimper.js
 // @require	    Toledo.js
 // @require	    lib/CoursePimper/CoursePimper.js
+// @require	    lib/Clock/Clock.js
 // @resource	jBoxCSS inc/jBox.css
 // @resource	coursepimper_modal lib/CoursePimper/coursepimper_modal.html
 // @resource	coursepimper_settings lib/CoursePimper/coursepimper_settings.html
@@ -29,6 +30,9 @@ GM_addStyle(GM_getResourceText("jBoxCSS"));
 let toledo = new Toledo();
 
 toledo.onCoursesLoaded(() => {
+    let clock = new Clock();
+    clock.insert();
+
     let coursePimper = new CoursePimper();
     coursePimper.update();
 
