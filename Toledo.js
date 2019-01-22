@@ -31,7 +31,7 @@ function Toledo()
      */
     this.onCourseSettingsLoaded = function (onCourseSettingsLoadedCallback)
     {
-        $(".btn-link[title='Information and settings']").click(function () {
+        $(".tol-enrollment-links a.btn:nth-child(3)").click(function () {
             let panelLoadChecker = setInterval(() => {
                 if ($(".panel-body .col-md-6").length > 0) {
                     clearInterval(panelLoadChecker);
