@@ -9,6 +9,41 @@ function CoursePimper() {
         }
     };
 
+    this.insertSettingsMenu = function () {
+        $("div#tol-filter-bar ul.dropdown-menu").append("<li><a class='ng-binding' id='openPimperSettingsModal' style='cursor: pointer;'>Toledo pimper</a></li>");
+
+        $("div#tol-filter-bar ul.dropdown-menu li a#openPimperSettingsModal").on("click", () => {
+            let settingsModal = new jBox('Modal', {
+                width: 500,
+                height: 300,
+                title: "Toledo pimper settings",
+                content: GM_getResourceText("settings"),
+                overlay: true,
+                onCloseComplete: function() {
+                    settingsModal.close();
+                    settingsModal.destroy();
+                }
+            });
+            settingsModal.open();
+
+            $("#coursePimperExportConfigBtn").on("click", () => {
+                let config = this.export();
+                $("#coursePimperConfigInput").val(JSON.stringify(config));
+            });
+
+            $("#coursePimperImportConfigBtn").on("click", () => {
+                let configStr = $("#coursePimperConfigInput").val();
+                this.import(JSON.parse(configStr));
+                location.reload(true);
+            });
+
+            $("#coursePimperDeleteConfigBtn").on("click", () => {
+                this.delete();
+                location.reload(true);
+            });
+        });
+    };
+
     /**
      * Delete stored config
      */
@@ -113,25 +148,20 @@ function CoursePimper() {
     };
 
     /**
-     * Add pimp link to course settings when it doesn't exist yet
+     * Add edit button to course
      */
     this.insertControl = function () {
-        if ($(".panel-body .col-md-push-6 #coursePimper").length === 1) {
-            return;
-        }
+        $(".tol-enrollment-favorite").append('<a href="#" class="tp-changeCover" role="button" title="Mark as favorite"><span class="sr-only ng-binding">Change cover image</span><span class="glyphicon glyphicon-pencil"></span></a>');
+        let self = this;
 
-        $(".panel-body .col-md-push-6").append(
-            '<h5 class="ng-binding" id="coursePimper">Course pimper</h5>' +
-            '<ul><li><a id="coursePimperChangeCover" style="cursor: pointer;">Change cover image</a></a></li></ul>'
-        );
-
-        $("a#coursePimperChangeCover").on("click", () => {
+        $(".tp-changeCover").on("click", function() {
+            let courseTitle = $(this).parent().parent().find("h5.tol-enrollment-label").text().trim();
             let imageChangerModal = new jBox('Modal', {
                 attach: "#imageChangerModalSaveBtn",
                 width: 500,
                 height: 100,
                 title: "Change cover image",
-                content: GM_getResourceText("coursepimper_modal"),
+                content: GM_getResourceText("modal"),
                 closeButton: true,
                 onCloseComplete: function() {
                     console.log("modal onCloseComplete event fired");
@@ -143,14 +173,10 @@ function CoursePimper() {
 
             $("button#imageChangerModalSaveBtn").on("click", () => {
                 console.log("modal save btn clicked");
-
-                let courseTitle = $(".panel-body dt.ng-binding:nth-child(8)").text();
                 let imageLocation = $("#imageLocationUrl").val();
-
                 if (imageLocation != null && imageLocation !== "") {
                     GM_setValue(courseTitle, imageLocation);
-
-                    this.updateSingle({
+                    self.updateSingle({
                         "course": courseTitle,
                         "image": imageLocation
                     });
@@ -160,30 +186,6 @@ function CoursePimper() {
                 imageChangerModal.destroy();
                 console.log("modal closed");
             });
-        });
-    };
-
-    /**
-     * Add custom elements to the pimper settings menu modal
-     * @param elementToAppend
-     */
-    this.updatePimperSettingsMenu = function (elementToAppend) {
-        $(elementToAppend).append(GM_getResourceText("coursepimper_settings"));
-
-        $("#coursePimperExportConfigBtn").on("click", () => {
-            let config = this.export();
-            $("#coursePimperConfigInput").val(JSON.stringify(config));
-        });
-
-        $("#coursePimperImportConfigBtn").on("click", () => {
-            let configStr = $("#coursePimperConfigInput").val();
-            this.import(JSON.parse(configStr));
-            location.reload(true);
-        });
-
-        $("#coursePimperDeleteConfigBtn").on("click", () => {
-            this.delete();
-            location.reload(true);
         });
     };
 }

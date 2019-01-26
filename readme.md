@@ -2,12 +2,9 @@
 Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toledomod](https://github.com/Sigurd3K/ToledoMod).
 
 # Features
-- CoursePimper
-    - Change course cover images (gifs work too!)
-    - Change course titles
-    - Import/export/delete your configuration
-- Clock
-    - Display current time in a side panel
+- Change course cover images (gifs work too!)
+- Change course titles
+- Import/export/delete your configuration
 
 # Installation
 Get a userscript manager like [violent monkey](https://violentmonkey.github.io/) or [tamper monkey](https://tampermonkey.net/) and [click here](https://github.com/sleeyax/ToledoPimper/raw/master/ToledoPimper.user.js) to install the script!

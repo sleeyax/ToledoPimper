@@ -24,21 +24,4 @@ function Toledo()
             }
         }, 1000);
     };
-
-    /**
-     * Wait for settings panel to update when course settings button is clicked
-     * @param {function} onCourseSettingsLoadedCallback
-     */
-    this.onCourseSettingsLoaded = function (onCourseSettingsLoadedCallback)
-    {
-        $(".tol-enrollment-links a.btn:nth-child(3)").click(function () {
-            let panelLoadChecker = setInterval(() => {
-                if ($(".panel-body .col-md-6").length > 0) {
-                    clearInterval(panelLoadChecker);
-                    console.log("settings panel loaded");
-                    onCourseSettingsLoadedCallback();
-                }
-            }, 1000);
-        });
-    }
 }
