@@ -10,7 +10,8 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
     - Display current time in a side panel
 
 # Installation
-Get a userscript manager and just [click here to install](https://github.com/sleeyax/ToledoPimper/raw/master/ToledoPimper.user.js)!
+Get a userscript manager like [violent monkey](https://violentmonkey.github.io/) or [tamper monkey](https://tampermonkey.net/) and [click here](https://github.com/sleeyax/ToledoPimper/raw/master/ToledoPimper.user.js) to install the script!
+<br><br>**Note**: Greasemonkey 4 is NOT supported.
 
 # Screenshots
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)
