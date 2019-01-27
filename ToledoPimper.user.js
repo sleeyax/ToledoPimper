@@ -4,7 +4,7 @@
 // @description	For a less boring toledo experience
 // @author		Sleeyax
 // @include		*toledo.kuleuven.be/portal*
-// @version		2.1
+// @version		3.0
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @require		inc/jBox.js
 // @require	    Toledo.js
@@ -20,15 +20,18 @@
 // @grant       GM_listValues
 // ==/UserScript==
 
+let coursePimper = new CoursePimper();
+coursePimper.inject();
+
+coursePimper.update();
+
 // --DO NOT DELETE--
 GM_addStyle(GM_getResourceText("jBoxCSS"));
 // ----
 
 let toledo = new Toledo();
-
 toledo.onCoursesLoaded(() => {
-    let coursePimper = new CoursePimper();
-    coursePimper.update();
     coursePimper.insertControl();
     coursePimper.insertSettingsMenu();
+    // coursePimper.catify();
 });

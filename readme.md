@@ -3,8 +3,7 @@ Remove that boring toledo (KU Leuven) look and have some fun! Inspired by [toled
 
 # Features
 - Change course cover images (gifs work too!)
-- Change course titles
-- Import/export/delete your configuration
+- Import/export/delete configuration
 
 # Installation
 Get a userscript manager like [violent monkey](https://violentmonkey.github.io/) or [tamper monkey](https://tampermonkey.net/) and [click here](https://github.com/sleeyax/ToledoPimper/raw/master/ToledoPimper.user.js) to install the script!

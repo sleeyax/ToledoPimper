@@ -1,12 +1,52 @@
 function CoursePimper() {
+
     /**
-     * Add image container to the course if it doesn't exist yet
-     * @param {object} element
+     * Insert required CSS for the script to work
      */
-    let addImageContainer = function (element) {
-        if ($(element).has(".image-container").length === 0) {
-            $(element).prepend('<div class="image-container ng-scope"></div>');
+    this.inject = function()
+    {
+        // Hide default image container & that annoying circle thing no one cares about
+        let stylesheet = ".tol-enrollments-tiles .tol-enrollment-container .tol-enrollment .wrapper::before, " +
+            ".tol-tile-link .image-container" +
+            "{display: none;}\n";
+
+        // Add our own image container
+        stylesheet += "a.tol-tile-link::after {" +
+            "content: '';" +
+            "display: block;" +
+            "height: 110px;" +
+            "position: relative;" +
+            "width: 100%;" +
+            "overflow: hidden" +
+            "border-top-left-radius: 3px;" +
+            "border-top-right-radius: 3px;" +
+            "}\n";
+
+        GM_addStyle(stylesheet);
+    };
+
+    /**
+     * Change course cover images
+     * @param overwiteConfig to overwrite specific course images manually
+     */
+    this.update = function(overwiteConfig = undefined) {
+        let stylesheet = "";
+
+        // Set cover images
+        GM_listValues().forEach(function (key) {
+            stylesheet += "a[title='" + key + "']::after {" +
+                "background: rgba(0, 0, 0, 0) url('" + GM_getValue(key) + "') no-repeat scroll center center / cover;" +
+                "}\n";
+        });
+
+        if (overwiteConfig !== undefined) {
+            console.log("a");
+            overwiteConfig.forEach((config) => {
+                stylesheet +=  "a[title='" + config.course + "']::after {background: rgba(0, 0, 0, 0) url('" + config.image + "') no-repeat scroll center center / cover !important;} \n";
+            });
         }
+
+        GM_addStyle(stylesheet);
     };
 
     this.insertSettingsMenu = function () {
@@ -75,32 +115,28 @@ function CoursePimper() {
     };
 
     /**
-     * Change single course
+     * Change single course after they are loaded
      * @param config
      */
     this.updateSingle = function (config) {
-        try {
-            console.log(config);
+        console.log(config);
+
+        if (config.hasOwnProperty("title") && config.title != null) {
             let course = $(".tol-tile-link").find("span.ng-binding[title='" + config.course + "']").parents("a.tol-tile-link");
+            $(course).find("span.ng-binding").text(config.title);
+            console.log("replaced " + config.course + " title with " + config.title);
+        }
 
-            addImageContainer(course);
-
-            if (config.hasOwnProperty("title") && config.title != null) {
-                $(course).find("span.ng-binding").text(config.title);
-                console.log("replaced " + config.course + " title with " + config.title);
-            }
-
-            if (config.hasOwnProperty("image") && config.image != null) {
-                $(course).find(".image-container").css("background", "rgba(0, 0, 0, 0) url('" + config.image + "') no-repeat scroll center center / cover");
-                console.log("replaced " + config.course + " img with " + config.image);
-            }
-
-        } catch (error) {
-            console.error(error.message);
+        if (config.hasOwnProperty("image") && config.image != null) {
+            let stylesheet = "a[title='" + config.course + "']::after {" +
+                "background: rgba(0, 0, 0, 0) url('" + config.image + "') no-repeat scroll center center / cover;" +
+                "}\n";
+            GM_addStyle(stylesheet);
+            console.log("replaced " + config.course + " img with " + config.image);
         }
     };
 
-    this.getRandomCat = function(callback) {
+    let getRandomCat = function(callback) {
         $.get("https://api.thecatapi.com/v1/images/search?", (data) => {
             return callback(data[0].url);
         });
@@ -111,40 +147,13 @@ function CoursePimper() {
 
         $(".tol-tile-link").each(function() {
             let courseName = $(this).find("span.ng-binding").text();
-            self.getRandomCat(function (catUrl) {
+            getRandomCat(function (catUrl) {
                 self.updateSingle({
                     "image": catUrl,
                     "course": courseName
                 });
             });
         });
-    };
-
-    /**
-     * Modify all courses
-     * @param config for all courses
-     */
-    this.update = function (config = undefined) {
-        let self = this;
-
-        // Loop over every course
-        $(".tol-tile-link").each(function() {
-
-            let courseName = $(this).find("span.ng-binding").text();
-
-            // Read stored values & Update cover images
-            self.updateSingle({
-                "image": GM_getValue(courseName),
-                "course": courseName
-            });
-        });
-
-        // If config is specified, overwrite specific courses
-        if (config !== undefined) {
-            config.forEach((courseConfig) => {
-                this.updateSingle(courseConfig);
-            });
-        }
     };
 
     /**

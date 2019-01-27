@@ -1,7 +1,7 @@
 function Toledo()
 {
     /**
-     * Wait for courses to update
+     * Wait for courses to load
      * @param {function} onCoursesLoadedCallback
      * @param {int} timesToCheck
      */
