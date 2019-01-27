@@ -13,7 +13,7 @@ Get a userscript manager like [violent monkey](https://violentmonkey.github.io/)
 ![Screenshot 2](https://i.imgur.com/VYosZwV.png)
 
 # Examples
-Check out [the wiki](https://github.com/sleeyax/ToledoPimper/wiki/Examples) for examples and more screenshots.
+Check out [the wiki](https://github.com/sleeyax/ToledoPimper/wiki/Examples) for examples.
 
 # More
 Looking for a [dark theme](https://userstyles.org/styles/148080/toledo-dark-theme)?
